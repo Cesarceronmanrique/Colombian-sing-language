@@ -73,7 +73,7 @@ while (1):
             for id, lm in enumerate(mano.landmark):             #Informacion de cada mano encontrada por el id
                 alto, ancho, c = frame.shape                    #Extraer el alto y el año del fotograma
                 corx, cory = int(lm.x*ancho), int(lm.y*alto)    #Ubicacion de los puntos en pixeles
-                posiciones.append([id,corx,cory])               #Agregar el ide del punto de la mano y sus respectivas coordenadas
+                posiciones.append([id,corx,cory])               #Agregar el id del punto de la mano y sus respectivas coordenadas
 
                 #dibujo.draw_landmarks(frame, mano, class_manos.HAND_CONNECTIONS)    #Dibujar esas lineas conectando los puntos
                 
@@ -85,7 +85,7 @@ while (1):
                 imagen_mano = cv2.cvtColor(imagen_mano, cv2.COLOR_BGR2GRAY)
                 try:
                     imagen_mano = cv2.resize(imagen_mano, (50, 50), interpolation = cv2.INTER_AREA) #Se reescala la imagen para el tamaño con el que se entrenó la red neuronal
-                    cv2.imshow("Videogris",imagen_mano)
+                    #cv2.imshow("Videogris",imagen_mano)
                     resultado_mano = ajustar_imagen(imagen_mano)
                     vector = cnn.predict(resultado_mano)    #Se predice con la imagen en array
                     Letra, Porcentaje = predecir(vector)    #Se obtiene la letra de la predicción
